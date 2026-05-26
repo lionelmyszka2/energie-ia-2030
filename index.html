@@ -510,6 +510,59 @@
   }
   footer a { color: var(--ink); }
   
+  /* ===== Water equation block ===== */
+  .water-equation {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 32px;
+    align-items: center;
+    padding: 36px 0;
+    margin: 24px 0 8px;
+    border-top: 1px solid var(--soft);
+    border-bottom: 1px solid var(--soft);
+  }
+  .water-side { text-align: center; }
+  .water-n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .water-l {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.4;
+  }
+  .water-eq {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 56px;
+    color: var(--muted);
+    text-align: center;
+  }
+  .water-prose {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink);
+    max-width: 640px;
+    margin: 24px auto 8px;
+    text-align: center;
+  }
+  .water-prose strong {
+    font-weight: 500;
+    border-bottom: 1px solid var(--ink);
+  }
+
   /* ===== Mobile ===== */
   @media (max-width: 700px) {
     header.site { padding: 12px 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
@@ -525,6 +578,9 @@
     .chart-wrap { height: 320px; }
     .slider-row { flex-wrap: wrap; }
     .slider-row label { min-width: auto; }
+    .water-equation { grid-template-columns: 1fr; gap: 20px; padding: 28px 0; }
+    .water-n { font-size: 56px; }
+    .water-eq { font-size: 40px; }
   }
 </style>
 </head>
@@ -804,7 +860,30 @@
   <div class="pull">
     D'ici 2030, notre usage de l'IA générative<br>va consommer <em>autant d'énergie électrique</em><br>que la Corée du Sud.
   </div>
-  
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>L'autre ressource invisible : l'eau</h3>
+      <div class="sub">Refroidir les data centers et faire pousser du coton — deux ordres de grandeur</div>
+
+      <div class="water-equation">
+        <div class="water-side">
+          <div class="water-n">30 000</div>
+          <div class="water-l">requêtes ChatGPT</div>
+        </div>
+        <div class="water-eq">=</div>
+        <div class="water-side">
+          <div class="water-n">1</div>
+          <div class="water-l">paire de chaussettes en coton</div>
+        </div>
+      </div>
+
+      <p class="water-prose">Une paire de chaussettes en coton, c'est <strong>environ 700 litres d'eau</strong> à la production. Une requête ChatGPT, refroidissement et électricité de génération inclus, <strong>environ 25 millilitres</strong>. Tout le monde porte des chaussettes — presque personne ne se demande où va l'eau de son IA.</p>
+
+      <div class="chart-source">Sources · Water Footprint Network · étude UC Riverside, 2023</div>
+    </div>
+  </div>
+
   <div class="prose">
     <p><strong>Ce qu'il faut retenir.</strong> L'IA générative ne « consomme » pas en soi de façon catastrophique aujourd'hui : sur 8000 TWh d'électricité mondiale, les data centers en pèsent 415, dont une fraction pour l'IA. Mais elle introduit trois ruptures.</p>
     <p><em>Première rupture, la vitesse.</em> La courbe de demande des data centers, longtemps stable grâce aux gains d'efficacité, repart fortement à la hausse depuis 2020. +12 % par an, avec une projection de doublement d'ici 2030.</p>
