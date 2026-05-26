@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Énergie & numérique — trois niveaux de lecture</title>
+<meta name="description" content="Comprendre la consommation énergétique mondiale, la place du numérique, et l'irruption de l'IA générative d'ici 2030.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #3d3530;
+    --paper: #fafaf7;
+    --rule: #4a3f38;
+    --muted: #8a7d72;
+    --soft: #ebebe6;
+    --hover: #f0ebe3;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter Tight', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* ===== Header ===== */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header.site .brand {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+  header.site nav {
+    display: flex;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  header.site nav a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  header.site nav a:hover { border-bottom-color: var(--ink); }
+  
+  /* ===== Hero ===== */
+  .hero {
+    padding: 100px 32px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--ink);
+  }
+  .hero .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+    max-width: 900px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .hero .lede {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 680px;
+    color: var(--ink);
+  }
+  .hero .meta {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--soft);
+  }
+  .hero .meta div {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .hero .meta div strong {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    margin-top: 8px;
+  }
+  
+  /* ===== Sections ===== */
+  section.level {
+    padding: 100px 32px;
+    border-bottom: 1px solid var(--ink);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .level-header {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    margin-bottom: 80px;
+    align-items: start;
+  }
+  .level-number {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 96px;
+    line-height: 0.9;
+    color: var(--ink);
+  }
+  .level-title h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .level-title h2 em { font-style: italic; }
+  .level-title .intro {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.55;
+    max-width: 680px;
+    color: var(--muted);
+  }
+  
+  /* ===== Charts grid ===== */
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  @media (min-width: 900px) {
+    .chart-row.two-col { grid-template-columns: 1fr 1fr; }
+  }
+  .chart-box {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 32px;
+  }
+  .chart-box h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .chart-box .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 420px;
+  }
+  .chart-wrap.tall { height: 480px; }
+  .chart-legend {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .chart-legend span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chart-legend i {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+  }
+  .chart-source {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  
+  /* ===== Controls ===== */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--soft);
+  }
+  .controls button {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .controls button:hover { background: var(--hover); }
+  .controls button.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  
+  /* ===== Text blocks ===== */
+  .prose {
+    max-width: 720px;
+    margin: 0 auto 60px;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .prose p { margin-bottom: 1.4em; }
+  .prose p em { font-style: italic; }
+  .prose strong {
+    font-weight: 500;
+    border-bottom: 1px solid var(--ink);
+  }
+  .pull {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.3;
+    text-align: center;
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .pull cite {
+    display: block;
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+  
+  /* ===== Key facts ===== */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    margin: 60px 0;
+    border: 1px solid var(--ink);
+  }
+  .fact {
+    padding: 32px 24px;
+    border-right: 1px solid var(--soft);
+    border-bottom: 1px solid var(--soft);
+  }
+  .fact:last-child { border-right: none; }
+  .fact .n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .fact .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  
+  /* ===== Comparison slider ===== */
+  .slider-block {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 40px 32px;
+    margin: 60px 0;
+  }
+  .slider-block h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .slider-block .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .slider-row label {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    min-width: 120px;
+  }
+  .slider-row input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2px;
+    background: var(--ink);
+    outline: none;
+  }
+  .slider-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .slider-row input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .slider-row .value {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    min-width: 90px;
+    text-align: right;
+  }
+  .slider-result {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--soft);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+  }
+  .slider-result .res-item .res-n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .slider-result .res-item .res-l {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  
+  /* ===== IA result ===== */
+  .ia-result {
+    padding: 24px 0;
+    border-top: 1px solid var(--soft);
+  }
+  .ia-headline {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .ia-value {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 76px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
+  .ia-unit {
+    font-family: var(--mono);
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .ia-equiv {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ia-equiv-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--soft);
+  }
+  .ia-equiv-row:last-child { border-bottom: none; }
+  .ia-equiv-n {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--ink);
+    min-width: 100px;
+    text-align: right;
+  }
+  .ia-equiv-l {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  
+  /* ===== Footer ===== */
+  footer {
+    padding: 80px 32px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  footer .sig {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+  footer a { color: var(--ink); }
+  
+  /* ===== Mobile ===== */
+  @media (max-width: 700px) {
+    header.site { padding: 12px 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    header.site nav { gap: 14px; font-size: 10px; }
+    .hero, section.level, footer { padding-left: 20px; padding-right: 20px; }
+    .hero { padding-top: 60px; padding-bottom: 60px; }
+    section.level { padding-top: 60px; padding-bottom: 60px; }
+    .level-header { grid-template-columns: 1fr; gap: 12px; margin-bottom: 50px; }
+    .level-number { font-size: 64px; }
+    .fact { border-right: none; }
+    footer { grid-template-columns: 1fr; }
+    .chart-box { padding: 20px; }
+    .chart-wrap { height: 320px; }
+    .slider-row { flex-wrap: wrap; }
+    .slider-row label { min-width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">Énergie &amp; numérique</div>
+  <nav>
+    <a href="#niveau-1">I. Monde</a>
+    <a href="#niveau-2">II. Numérique</a>
+    <a href="#niveau-3">III. IA &amp; 2030</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Trois niveaux de lecture — données 2024 / projections 2030</div>
+  <h1>Ce que <em>consomme</em> vraiment<br>le monde, le numérique,<br>et bientôt l'<em>intelligence artificielle</em>.</h1>
+  <p class="lede">Une exploration en trois temps de la consommation énergétique mondiale. Du transport routier aux data centers, du streaming vidéo à la génération de vidéo par IA. Chiffres sourcés AIE, Arcep, Ademe, Hugging Face.</p>
+  
+  <div class="meta">
+    <div>Sources principales <strong>AIE · Arcep · Ademe</strong></div>
+    <div>Dernière mise à jour <strong>Mai 2026</strong></div>
+    <div>Granularité <strong>Mondiale</strong></div>
+    <div>Horizon prospectif <strong>2030</strong></div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- NIVEAU 1 — MONDE                               -->
+<!-- ============================================== -->
+<section class="level" id="niveau-1">
+  <div class="level-header">
+    <div class="level-number">I</div>
+    <div class="level-title">
+      <h2>Le paysage <em>mondial</em></h2>
+      <p class="intro">429 exajoules consommés en 2023, soit l'équivalent énergétique de 10 milliards de tonnes de pétrole. Quatre grands secteurs absorbent l'essentiel de cette demande. Les énergies fossiles restent dominantes à plus de 80 %.</p>
+    </div>
+  </div>
+  
+  <div class="facts">
+    <div class="fact">
+      <div class="n">429<span style="font-size: 22px; font-style: normal;"> EJ</span></div>
+      <div class="label">Consommation finale mondiale (2023)</div>
+    </div>
+    <div class="fact">
+      <div class="n">81,6<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Part des énergies fossiles</div>
+    </div>
+    <div class="fact">
+      <div class="n">+2<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Croissance annuelle 2024</div>
+    </div>
+    <div class="fact">
+      <div class="n">51<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">4 pays : Chine, USA, Inde, Russie</div>
+    </div>
+  </div>
+  
+  <div class="chart-row two-col">
+    <div class="chart-box">
+      <h3>Par secteur</h3>
+      <div class="sub">Répartition de la consommation finale — 2023</div>
+      <div class="chart-wrap"><canvas id="ch-secteurs" role="img" aria-label="Répartition par secteur : industrie 30 %, transports 29 %, résidentiel 20 %, usages non énergétiques 10 %, tertiaire 8 %, agriculture 2 %.">Industrie 30, transports 29, résidentiel 20, autres 21.</canvas></div>
+      <div class="chart-source">Source · AIE 2024</div>
+    </div>
+    <div class="chart-box">
+      <h3>Par source d'énergie</h3>
+      <div class="sub">Mix énergétique mondial — 2023</div>
+      <div class="chart-wrap"><canvas id="ch-sources" role="img" aria-label="Mix énergétique : pétrole 38 %, charbon 26 %, gaz 17 %, renouvelables 14 %, électricité décarbonée 5 %.">Fossiles dominants à 81 %.</canvas></div>
+      <div class="chart-source">Source · AIE 2024</div>
+    </div>
+  </div>
+  
+  <div class="chart-row">
+    <div class="chart-box">
+      <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 16px; margin-bottom: 8px;">
+        <div>
+          <h3>Consommation par pays</h3>
+          <div class="sub">Les 10 premiers consommateurs mondiaux</div>
+        </div>
+        <div class="controls" style="margin: 0; padding: 0; border: none;">
+          <button class="active" data-mode="total" onclick="updateBarPays('total', this)">Total</button>
+          <button data-mode="capita" onclick="updateBarPays('capita', this)">Par habitant</button>
+        </div>
+      </div>
+      <div class="chart-wrap tall"><canvas id="ch-pays" role="img" aria-label="Bar chart consommation énergétique par pays. Chine 23,6 %, USA 15,2 %, Inde 7,1 %, Russie 5,1 %.">Chine et USA dominent largement.</canvas></div>
+      <div class="chart-source">Source · AIE 2024 — bouton « Par habitant » : kgep/personne</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- NIVEAU 2 — NUMÉRIQUE                           -->
+<!-- ============================================== -->
+<section class="level" id="niveau-2">
+  <div class="level-header">
+    <div class="level-number">II</div>
+    <div class="level-title">
+      <h2>Focus sur le <em>numérique</em></h2>
+      <p class="intro">Le numérique pèse environ 3 à 4 % de la consommation électrique mondiale — petit en absolu, mais en croissance rapide. Trois postes le composent : les terminaux, les réseaux, les data centers. À l'intérieur, un seul usage écrase tous les autres : la vidéo en ligne.</p>
+    </div>
+  </div>
+  
+  <div class="facts">
+    <div class="fact">
+      <div class="n">~4<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Part du numérique dans les émissions mondiales</div>
+    </div>
+    <div class="fact">
+      <div class="n">80<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Du trafic Internet est de la vidéo</div>
+    </div>
+    <div class="fact">
+      <div class="n">50<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Conso d'usage liée aux terminaux</div>
+    </div>
+    <div class="fact">
+      <div class="n">×3</div>
+      <div class="label">Surcoût énergétique 4G vs Wifi</div>
+    </div>
+  </div>
+  
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>Trois grands postes</h3>
+      <div class="sub">Consommation électrique du numérique</div>
+      <div class="chart-wrap"><canvas id="ch-postes" role="img" aria-label="Répartition postes numérique : terminaux 50 %, réseaux 35 %, data centers 15 %.">Terminaux dominent à 50 %.</canvas></div>
+      <div class="chart-source">Source · AIE / Arcep-Ademe</div>
+    </div>
+  </div>
+  
+  <div class="chart-row two-col">
+    <div class="chart-box">
+      <h3>Les usages du numérique — 2026</h3>
+      <div class="sub">Répartition du trafic mondial</div>
+      <div class="chart-wrap"><canvas id="ch-usages" role="img" aria-label="Usages 2026 : VoD 27 %, pornographie 22 %, tubes 17 %, réseaux sociaux 14 %, cloud et stockage 8 %, autres usages 10 %, IA générative 2 %.">La vidéo en ligne domine encore largement.</canvas></div>
+      <div class="chart-source">Source · The Shift Project, AIE, Arcep — estimations 2026</div>
+    </div>
+    <div class="chart-box">
+      <h3>Projection 2030</h3>
+      <div class="sub">Scénario central AIE</div>
+      <div class="chart-wrap"><canvas id="ch-usages-2030" role="img" aria-label="Projection usages numériques 2030 : VoD 23 %, pornographie 19 %, tubes 16 %, réseaux sociaux 14 %, cloud 12 %, IA générative 8 %, autres 8 %.">L'IA générative quadruple sa part d'ici 2030.</canvas></div>
+      <div class="chart-source">Source · projection AIE — Key Questions on Energy and AI, avril 2025</div>
+    </div>
+  </div>
+  
+  <div class="slider-block">
+    <h3>Combien consomme une heure de vidéo ?</h3>
+    <div class="sub">Simulateur — selon votre appareil et votre connexion</div>
+    
+    <div class="slider-row">
+      <label>Durée</label>
+      <input type="range" id="sl-duree" min="0.5" max="6" step="0.5" value="2">
+      <div class="value"><span id="v-duree">2</span> h</div>
+    </div>
+    <div class="slider-row">
+      <label>Appareil</label>
+      <input type="range" id="sl-appareil" min="0" max="3" step="1" value="2">
+      <div class="value"><span id="v-appareil">TV LED</span></div>
+    </div>
+    <div class="slider-row">
+      <label>Connexion</label>
+      <input type="range" id="sl-conn" min="0" max="2" step="1" value="0">
+      <div class="value"><span id="v-conn">Wifi</span></div>
+    </div>
+    <div class="slider-row">
+      <label>Résolution</label>
+      <input type="range" id="sl-reso" min="0" max="3" step="1" value="2">
+      <div class="value"><span id="v-reso">HD</span></div>
+    </div>
+    
+    <div class="slider-result">
+      <div class="res-item">
+        <div class="res-n"><span id="r-wh">200</span> Wh</div>
+        <div class="res-l">Énergie totale</div>
+      </div>
+      <div class="res-item">
+        <div class="res-n"><span id="r-co2">12</span> g</div>
+        <div class="res-l">CO₂ équivalent (France)</div>
+      </div>
+      <div class="res-item">
+        <div class="res-n">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -6px; margin-right: 6px; color: #9DCBE9;">
+            <path d="M12 2v2"/>
+            <circle cx="12" cy="5" r="1"/>
+            <rect x="4" y="7" width="16" height="12" rx="2"/>
+            <circle cx="9" cy="13" r="1.2"/>
+            <circle cx="15" cy="13" r="1.2"/>
+            <path d="M9 17h6"/>
+            <path d="M2 12h2"/>
+            <path d="M20 12h2"/>
+          </svg>
+          <span id="r-gpt">670</span>
+        </div>
+        <div class="res-l">Requêtes ChatGPT équivalentes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- NIVEAU 3 — IA & 2030                           -->
+<!-- ============================================== -->
+<section class="level" id="niveau-3">
+  <div class="level-header">
+    <div class="level-number">III</div>
+    <div class="level-title">
+      <h2>L'IA <em>générative</em> dans le paysage 2030</h2>
+      <p class="intro">Pour l'instant, l'IA reste un poste mineur. Une requête ChatGPT consomme ~0,3 Wh, soit l'équivalent énergétique de 10 secondes de Netflix. Mais la trajectoire est vertigineuse : l'AIE prévoit un triplement de la consommation des data centers IA d'ici 2030.</p>
+    </div>
+  </div>
+  
+  <div class="facts">
+    <div class="fact">
+      <div class="n">1,5<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Part des data centers dans l'élec mondiale (2024)</div>
+    </div>
+    <div class="fact">
+      <div class="n">3<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Projection AIE pour 2030</div>
+    </div>
+    <div class="fact">
+      <div class="n">×3</div>
+      <div class="label">Pour les data centers spécialisés IA</div>
+    </div>
+    <div class="fact">
+      <div class="n">+12<span style="font-size: 22px; font-style: normal;"> %</span></div>
+      <div class="label">Croissance annuelle moyenne 5 ans</div>
+    </div>
+  </div>
+  
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>Trajectoire des data centers — 2020 / 2030</h3>
+      <div class="sub">Consommation électrique mondiale en TWh — projection AIE 2025</div>
+      <div class="chart-wrap tall"><canvas id="ch-trajectoire" role="img" aria-label="Courbe data centers : 220 TWh en 2020, 415 en 2024, 485 en 2025, 945 en 2030.">Doublement entre 2024 et 2030.</canvas></div>
+      <div class="chart-source">Source · AIE — Key Questions on Energy and AI (avril 2025)</div>
+    </div>
+  </div>
+  
+  <div class="chart-row two-col">
+    <div class="chart-box">
+      <h3>Coût énergétique d'une vidéo IA</h3>
+      <div class="sub">Génération d'un clip par un modèle de pointe</div>
+      
+      <div class="ia-result" style="border-top: none; padding-top: 0;">
+        <div class="ia-headline">
+          <span class="ia-value">360</span>
+          <span class="ia-unit">Wh</span>
+        </div>
+        <div class="ia-equiv">
+          <div class="ia-equiv-row">
+            <span class="ia-equiv-n">1 200</span>
+            <span class="ia-equiv-l">recherches Google</span>
+          </div>
+          <div class="ia-equiv-row">
+            <span class="ia-equiv-n">30</span>
+            <span class="ia-equiv-l">charges de smartphone</span>
+          </div>
+          <div class="ia-equiv-row">
+            <span class="ia-equiv-n">1 h 12</span>
+            <span class="ia-equiv-l">de Netflix HD sur TV</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chart-source">Source · Hugging Face 2025 — étude « Video Killed the Energy Budget »</div>
+    </div>
+    <div class="chart-box">
+      <h3>Mise en perspective</h3>
+      <div class="sub">Énergie d'une heure de Netflix HD = combien d'IA ?</div>
+      <div class="chart-wrap tall"><canvas id="ch-compare" role="img" aria-label="Une heure de Netflix HD (300 Wh) équivaut à 1000 requêtes ChatGPT, 100 images IA, 25 charges smartphone, ou 0,83 vidéo IA.">300 Wh = 1000 ChatGPT ou 25 charges smartphone.</canvas></div>
+      <div class="chart-source">Hypothèse · 1 h Netflix HD sur TV LED ≈ 300 Wh, 1 charge smartphone ≈ 12 Wh</div>
+    </div>
+  </div>
+  
+  <div class="pull">
+    « Aux États-Unis, les data centers sont en voie<br>de représenter <em>près de la moitié</em><br>de la demande électrique supplémentaire. »
+    <cite>Fatih Birol, directeur exécutif de l'AIE · avril 2025</cite>
+  </div>
+  
+  <div class="prose">
+    <p><strong>Ce qu'il faut retenir.</strong> L'IA générative ne « consomme » pas en soi de façon catastrophique aujourd'hui : sur 8000 TWh d'électricité mondiale, les data centers en pèsent 415, dont une fraction pour l'IA. Mais elle introduit trois ruptures.</p>
+    <p><em>Première rupture, la vitesse.</em> La courbe de demande des data centers, longtemps stable grâce aux gains d'efficacité, repart fortement à la hausse depuis 2020. +12 % par an, avec une projection de doublement d'ici 2030.</p>
+    <p><em>Deuxième rupture, la concentration.</em> 85 % de la consommation des data centers se concentre dans trois zones : États-Unis, Europe, Chine. Aux États-Unis, la sécurité d'approvisionnement électrique commence à se poser concrètement.</p>
+    <p><em>Troisième rupture, la vidéo IA.</em> Un modèle de génération vidéo lourd consomme 3000 fois plus qu'un modèle léger. Si l'usage se démocratise sans sobriété par conception, l'impact deviendra comparable au streaming traditionnel.</p>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="sig">Énergie &amp; numérique</div>
+    <div style="margin-top: 12px;">Un format de lecture en trois niveaux<br>conçu pour l'éveil critique aux ordres de grandeur.</div>
+  </div>
+  <div>
+    <div>Sources<br><span style="color: var(--ink);">AIE 2024-2025 · Arcep-Ademe 2024 · The Shift Project · Hugging Face 2025</span></div>
+    <div style="margin-top: 20px;">Données arrondies pour la lisibilité<br>Méthodologies disponibles auprès des organismes cités</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<script>
+  Chart.register(ChartDataLabels);
+  // Palette pastel — bleu ciel, lilas, rose poudré, miel doré, vert tendre
+  const INK = '#3d3530';        // brun chaud pour les textes
+  const C1 = '#9DCBE9';         // bleu ciel
+  const C2 = '#C5ADF7';         // lilas
+  const C3 = '#FEA3B0';         // rose poudré
+  const C4 = '#E6C492';         // miel doré
+  const C5 = '#A4E99D';         // vert tendre
+  const C6 = '#7BB5D9';         // bleu ciel approfondi (accent)
+  const SOFT = '#ebebe6';
+  const PAPER = '#fafaf7';
+  
+  // Palettes thématiques — rotation harmonieuse des 5 pastels
+  const PAL_SECTEURS = [C1, C2, C3, C4, C5, C6];
+  const PAL_SOURCES = [C3, C4, C2, C5, C1];           // fossiles en chauds, renouvelables en frais
+  const PAL_POSTES = [C1, C2, C3];
+  const PAL_USAGES = [C3, C2, C1, C4, C5];
+  const PAL_TASKS = [C5, C1, C2, C4, C3];
+
+  Chart.defaults.font.family = "'Inter Tight', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = INK;
+  Chart.defaults.borderColor = SOFT;
+
+  const commonDoughnut = {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '48%',
+    layout: { padding: { top: 36, bottom: 36, left: 110, right: 110 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: INK,
+        titleColor: PAPER,
+        bodyColor: PAPER,
+        bodyFont: { family: "'JetBrains Mono', monospace", size: 11 },
+        titleFont: { family: "'Fraunces', serif", size: 13, weight: '400', style: 'italic' },
+        padding: 12,
+        cornerRadius: 0,
+        displayColors: false,
+        callbacks: {
+          label: (c) => ' ' + c.parsed + ' %'
+        }
+      },
+      datalabels: {
+        // anchor=end → bord externe du segment ; align=end → texte au-delà du bord
+        anchor: 'end',
+        align: 'end',
+        offset: 8,
+        color: INK,
+        font: {
+          family: "'Inter Tight', sans-serif",
+          size: 12,
+          weight: '500'
+        },
+        textAlign: 'center',
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label + '\n' + value + ' %';
+        },
+        // ligne de rappel reliant le segment au label
+        listeners: {},
+        clip: false
+      }
+    }
+  };
+  
+  // Plugin pour dessiner les leader lines (petites flèches/traits) depuis le segment vers le label
+  const leaderLinesPlugin = {
+    id: 'leaderLines',
+    afterDatasetsDraw(chart) {
+      if (chart.config.type !== 'doughnut') return;
+      const { ctx } = chart;
+      const meta = chart.getDatasetMeta(0);
+      const cx = (chart.chartArea.left + chart.chartArea.right) / 2;
+      const cy = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+      meta.data.forEach((arc) => {
+        const angle = (arc.startAngle + arc.endAngle) / 2;
+        const outerRadius = arc.outerRadius;
+        // point sur le bord du segment
+        const x1 = cx + Math.cos(angle) * outerRadius;
+        const y1 = cy + Math.sin(angle) * outerRadius;
+        // point décalé vers l'extérieur
+        const x2 = cx + Math.cos(angle) * (outerRadius + 14);
+        const y2 = cy + Math.sin(angle) * (outerRadius + 14);
+        ctx.save();
+        ctx.strokeStyle = INK;
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        ctx.restore();
+      });
+    }
+  };
+
+  // ===== Niveau 1 — Secteurs =====
+  new Chart(document.getElementById('ch-secteurs'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Industrie', 'Transports', 'Résidentiel', 'Usages non-énergétiques', 'Tertiaire', 'Agriculture'],
+      datasets: [{
+        data: [30, 29, 20, 10, 8, 3],
+        backgroundColor: PAL_SECTEURS,
+        borderColor: PAPER,
+        borderWidth: 2
+      }]
+    },
+    options: commonDoughnut,
+    plugins: [leaderLinesPlugin]
+  });
+
+  // ===== Niveau 1 — Sources =====
+  new Chart(document.getElementById('ch-sources'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Pétrole', 'Charbon', 'Gaz naturel', 'Renouvelables', 'Nucléaire'],
+      datasets: [{
+        data: [38, 26, 17, 14, 5],
+        backgroundColor: PAL_SOURCES,
+        borderColor: PAPER,
+        borderWidth: 2
+      }]
+    },
+    options: commonDoughnut,
+    plugins: [leaderLinesPlugin]
+  });
+
+  // ===== Niveau 1 — Pays =====
+  const paysData = {
+    total: {
+      labels: ['Chine', 'États-Unis', 'Inde', 'Russie', 'Japon', 'Canada', 'Brésil', 'Allemagne', 'Corée du S.', 'France'],
+      data: [23.6, 15.2, 7.1, 5.1, 3.0, 2.4, 2.1, 1.9, 1.8, 1.4],
+      label: '% conso mondiale',
+      fmt: (v) => v + ' %'
+    },
+    capita: {
+      labels: ['Canada', 'États-Unis', 'Corée du S.', 'Russie', 'Allemagne', 'Japon', 'France', 'Chine', 'Brésil', 'Inde'],
+      data: [7800, 6700, 5400, 5100, 3500, 3300, 3300, 2400, 1500, 750],
+      label: 'kgep par habitant',
+      fmt: (v) => v.toLocaleString('fr-FR') + ' kgep'
+    }
+  };
+
+  const ctxPays = document.getElementById('ch-pays');
+  let paysChart = new Chart(ctxPays, {
+    type: 'bar',
+    data: {
+      labels: paysData.total.labels,
+      datasets: [{
+        label: paysData.total.label,
+        data: paysData.total.data,
+        backgroundColor: C2,
+        borderColor: C2,
+        borderWidth: 0,
+        barThickness: 16
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        datalabels: { display: false },
+        tooltip: {
+          backgroundColor: INK,
+          titleColor: PAPER,
+          bodyColor: PAPER,
+          bodyFont: { family: "'JetBrains Mono', monospace", size: 11 },
+          titleFont: { family: "'Fraunces', serif", size: 13, style: 'italic' },
+          padding: 12,
+          cornerRadius: 0,
+          displayColors: false,
+          callbacks: { label: (c) => ' ' + paysData.total.fmt(c.parsed.x) }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: { color: SOFT, drawBorder: false },
+          ticks: { font: { family: "'JetBrains Mono', monospace", size: 10 }, color: C2 }
+        },
+        y: {
+          grid: { display: false, drawBorder: false },
+          ticks: { font: { family: "'Inter Tight', sans-serif", size: 13 }, color: INK }
+        }
+      }
+    }
+  });
+
+  function updateBarPays(mode, btn) {
+    document.querySelectorAll('[data-mode]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const d = paysData[mode];
+    paysChart.data.labels = d.labels;
+    paysChart.data.datasets[0].data = d.data;
+    paysChart.data.datasets[0].label = d.label;
+    paysChart.options.plugins.tooltip.callbacks.label = (c) => ' ' + d.fmt(c.parsed.x);
+    paysChart.update();
+  }
+
+  // ===== Niveau 2 — Postes =====
+  new Chart(document.getElementById('ch-postes'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Terminaux', 'Réseaux', 'Data centers'],
+      datasets: [{
+        data: [50, 35, 15],
+        backgroundColor: PAL_POSTES,
+        borderColor: PAPER,
+        borderWidth: 2
+      }]
+    },
+    options: commonDoughnut,
+    plugins: [leaderLinesPlugin]
+  });
+
+  // ===== Niveau 2 — Usages 2026 =====
+  // 7 postes couvrant l'ensemble du numérique
+  // Vidéo en ligne = VoD + porno + tubes + social = 80 %
+  // Ordre choisi pour que Cloud & IA générative soient adjacents
+  new Chart(document.getElementById('ch-usages'), {
+    type: 'doughnut',
+    data: {
+      labels: ['VoD (Netflix, Prime…)', 'Pornographie', 'Tubes (YouTube…)', 'Réseaux sociaux', 'Autres', 'Cloud & stockage', 'IA générative'],
+      datasets: [{
+        data: [27, 22, 17, 14, 10, 8, 2],
+        backgroundColor: [C1, C2, C4, C5, '#d8d3c5', C6, C3],
+        borderColor: PAPER,
+        borderWidth: 2
+      }]
+    },
+    options: commonDoughnut,
+    plugins: [leaderLinesPlugin]
+  });
+
+  // ===== Niveau 2 — Projection usages 2030 =====
+  // Même ordre pour la lecture comparative directe
+  new Chart(document.getElementById('ch-usages-2030'), {
+    type: 'doughnut',
+    data: {
+      labels: ['VoD (Netflix, Prime…)', 'Pornographie', 'Tubes (YouTube…)', 'Réseaux sociaux', 'Autres', 'Cloud & stockage', 'IA générative'],
+      datasets: [{
+        data: [23, 19, 16, 14, 8, 12, 8],
+        backgroundColor: [C1, C2, C4, C5, '#d8d3c5', C6, C3],
+        borderColor: PAPER,
+        borderWidth: 2
+      }]
+    },
+    options: commonDoughnut,
+    plugins: [leaderLinesPlugin]
+  });
+  const appareils = [
+    { name: 'Smartphone', w: 5 },
+    { name: 'Ordi portable', w: 25 },
+    { name: 'TV LED', w: 100 },
+    { name: 'TV 4K OLED', w: 200 }
+  ];
+  const connexions = [
+    { name: 'Wifi', mult: 1 },
+    { name: '4G', mult: 3 },
+    { name: '5G', mult: 2 }
+  ];
+  const resolutions = [
+    { name: 'SD (480p)', mult: 0.4 },
+    { name: 'HD (720p)', mult: 0.7 },
+    { name: 'HD (1080p)', mult: 1 },
+    { name: '4K', mult: 2 }
+  ];
+
+  function fmtNum(n) {
+    if (n >= 100) return Math.round(n);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+
+  function updateSim() {
+    const duree = parseFloat(document.getElementById('sl-duree').value);
+    const ap = appareils[parseInt(document.getElementById('sl-appareil').value)];
+    const co = connexions[parseInt(document.getElementById('sl-conn').value)];
+    const re = resolutions[parseInt(document.getElementById('sl-reso').value)];
+
+    document.getElementById('v-duree').textContent = duree.toString().replace('.', ',');
+    document.getElementById('v-appareil').textContent = ap.name;
+    document.getElementById('v-conn').textContent = co.name;
+    document.getElementById('v-reso').textContent = re.name;
+
+    // énergie terminal + part réseau/datacenter dépendant résolution
+    const wh = (ap.w + 30 * re.mult * co.mult) * duree;
+    // CO2 France ~50 gCO2/kWh
+    const co2 = (wh / 1000) * 60;
+    // Une requête ChatGPT ≈ 0,3 Wh (Epoch AI 2025)
+    const gpt = wh / 0.3;
+
+    document.getElementById('r-wh').textContent = fmtNum(wh);
+    document.getElementById('r-co2').textContent = fmtNum(co2);
+    document.getElementById('r-gpt').textContent = Math.round(gpt).toLocaleString('fr-FR');
+  }
+
+  document.querySelectorAll('.slider-row input[type="range"]').forEach(s => {
+    s.addEventListener('input', updateSim);
+  });
+  updateSim();
+
+  // ===== Niveau 3 — Trajectoire =====
+  new Chart(document.getElementById('ch-trajectoire'), {
+    type: 'line',
+    data: {
+      labels: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+      datasets: [
+        {
+          label: 'Data centers (TWh)',
+          data: [220, 250, 290, 350, 415, 485, 565, 660, 760, 850, 945],
+          borderColor: C1,
+          backgroundColor: 'rgba(157, 203, 233, 0.20)',
+          borderWidth: 2.5,
+          tension: 0.3,
+          fill: true,
+          pointBackgroundColor: PAPER,
+          pointBorderColor: C1,
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        },
+        {
+          label: 'Dont IA spécialisée (TWh)',
+          data: [10, 20, 35, 60, 100, 160, 230, 320, 420, 530, 600],
+          borderColor: C2,
+          borderDash: [5, 4],
+          backgroundColor: 'transparent',
+          borderWidth: 2.5,
+          tension: 0.3,
+          fill: false,
+          pointBackgroundColor: PAPER,
+          pointBorderColor: C2,
+          pointBorderWidth: 2,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { family: "'JetBrains Mono', monospace", size: 11 }, color: INK, padding: 14 }
+        },
+        datalabels: { display: false },
+        tooltip: {
+          backgroundColor: INK,
+          titleColor: PAPER,
+          bodyColor: PAPER,
+          bodyFont: { family: "'JetBrains Mono', monospace", size: 11 },
+          titleFont: { family: "'Fraunces', serif", size: 13, style: 'italic' },
+          padding: 12,
+          cornerRadius: 0,
+          callbacks: { label: (c) => '  ' + c.dataset.label.split(' ')[0] + ' : ' + c.parsed.y + ' TWh' }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: SOFT, drawBorder: false },
+          ticks: { font: { family: "'JetBrains Mono', monospace", size: 10 }, color: C2 }
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: SOFT, drawBorder: false },
+          ticks: {
+            font: { family: "'JetBrains Mono', monospace", size: 10 },
+            color: C2,
+            callback: (v) => v + ' TWh'
+          }
+        }
+      }
+    }
+  });
+
+  // ===== Niveau 3 — Sélecteur supprimé, focus sur la vidéo IA lourde =====
+  // (valeurs codées en dur dans le HTML, plus de logique interactive)
+  
+  function fmtFR(n) {
+    if (n >= 1000) return Math.round(n).toLocaleString('fr-FR');
+    if (n >= 100) return Math.round(n).toString();
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    if (n >= 1) return n.toFixed(2).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+
+  // ===== Niveau 3 — Comparaison : 1 h Netflix HD = combien ? =====
+  // Référence : 1 heure Netflix HD sur TV LED = 300 Wh
+  // Affiche combien d'unités de chaque tâche on peut faire avec cette énergie
+  // Vidéo IA = modèle lourd uniquement (pas de distinction légère/moyenne)
+  new Chart(document.getElementById('ch-compare'), {
+    type: 'bar',
+    data: {
+      labels: [
+        'Requêtes ChatGPT',
+        'Recherches Google',
+        'Images IA (Midjourney)',
+        'Charges de smartphone',
+        'Vidéos IA'
+      ],
+      datasets: [{
+        data: [1000, 1000, 100, 25, 0.83],
+        backgroundColor: [C1, C5, C4, C2, C3],
+        borderWidth: 0,
+        barThickness: 24
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          offset: 6,
+          color: INK,
+          font: { family: "'Fraunces', serif", size: 14, style: 'italic', weight: '400' },
+          formatter: (v) => {
+            if (v < 1) return v.toFixed(2).replace('.', ',');
+            if (v < 10) return v.toFixed(1).replace('.', ',');
+            return Math.round(v).toLocaleString('fr-FR');
+          }
+        },
+        tooltip: {
+          backgroundColor: INK, titleColor: PAPER, bodyColor: PAPER,
+          bodyFont: { family: "'JetBrains Mono', monospace", size: 11 },
+          padding: 12, cornerRadius: 0, displayColors: false,
+          callbacks: { 
+            label: (c) => ' ' + fmtFR(c.parsed.x) + ' équivalents'
+          }
+        }
+      },
+      layout: { padding: { right: 60 } },
+      scales: {
+        x: {
+          type: 'logarithmic',
+          grid: { color: SOFT, drawBorder: false },
+          ticks: {
+            font: { family: "'JetBrains Mono', monospace", size: 9 },
+            color: C2,
+            callback: (v) => Math.round(v).toLocaleString('fr-FR')
+          }
+        },
+        y: {
+          grid: { display: false, drawBorder: false },
+          ticks: { font: { family: "'Inter Tight', sans-serif", size: 12 }, color: INK }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
